@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NMS Company</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Technology IT Solutions HTML Template">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/Arish_cement_Co._Logo_croped.png">
+
+    <!-- CSS
+        ============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+
+    <!-- Font Family CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome-all.min.css">
+
+    <!-- Swiper slider CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
+
+    <!-- animate-text CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/animate-text.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
+
+    <!-- Light gallery CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
+
+    <!-- Vendor & Plugins CSS (Please remove the comment from below vendor.min.css & plugins.min.css for better website load performance and remove css files from avobe) -->
+
+    <!-- <link rel="stylesheet" href="../assets/css/vendor/vendor.min.css">
+        <link rel="stylesheet" href="../assets/css/plugins/plugins.min.css"> -->
+
+    <!-- Main Style CSS -->
+    <!-- Main Style CSS -->
+    <link id="styleLink" rel="stylesheet" href="assets/css/style.css">
+    <link id="styleLinkAr" rel="stylesheet" href="assets/css/styleAr.css">
+
+    <!-- Load language data from the JSON file -->
+    <script src="languages.json" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the current language on page load
+            setLanguageButtonText();
+
+            // Load language data from the JSON file
+            fetch('languages.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Store language data globally
+                    window.languageData = data;
+
+                    // Check language and change texts accordingly
+                    checkLanguageAndChangeText();
+                });
+        });
+
+        function checkLanguageAndChangeText() {
+            // Retrieve the selected language from local storage or set a default language
+            var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+
+            // Update text content based on the selected language
+            var elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(function (element) {
+                var key = element.getAttribute('data-lang');
+                if (languageData[selectedLanguage] && languageData[selectedLanguage][key]) {
+                    element.textContent = languageData[selectedLanguage][key];
+                }
+            });
+
+            // Update the language button text
+            setLanguageButtonText();
+        }
+
+        function setLanguageButtonText() {
+            var currentLanguageButton = document.getElementById('currentLanguageButton');
+            var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            switch (selectedLanguage) {
+                case 'en':
+                    currentLanguageButton.textContent = 'English';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+                    break;
+                case 'ar':
+                    currentLanguageButton.textContent = 'العربية';
+                    document.getElementById('styleLink').disabled = true; // Disable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = false; // Enable Arabic stylesheet
+                    break;
+                case 'fr':
+                    currentLanguageButton.textContent = 'Français';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+                    break;
+                default:
+                    currentLanguageButton.textContent = 'English';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+            }
+
+            // Set page direction based on the selected language
+            var htmlElement = document.documentElement;
+            htmlElement.setAttribute('lang', selectedLanguage);
+            htmlElement.setAttribute('dir', selectedLanguage === 'ar' ? 'rtl' : 'ltr');
+        }
+
+        function changeLanguage(lang) {
+            // Store the selected language in local storage
+            localStorage.setItem('selectedLanguage', lang);
+
+            // Change texts based on the selected language
+            checkLanguageAndChangeText();
+            location.reload();
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+
+
+    <div class="preloader-activate preloader-active open_tm_preloader">
+        <div class="preloader-area-wrap">
+            <div class="spinner d-flex justify-content-center align-items-center h-100">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--====================  header area ====================-->
+    <div class="header-area">
+
+
+
+        <div class="header-bottom-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header position-relative">
+                            <!-- brand logo -->
+                            <div class="header__logo top-logo">
+                                <a href="#">
+                                    <img src="assets/images/logo/Arish_cement_Co._Logo_croped.png" aria-label="NMS Logo"
+                                        width="70" height="48" class="img-fluid" alt="">
+                                </a>
+                            </div>
+
+                            <div class="header-right flexible-image-slider-wrap">
+
+                                <div class="header-right-inner" id="hidden-icon-wrapper">
+                                    <!-- Header Search Form -->
+                                    <div class="header-search-form d-md-none d-block">
+                                        <form action="#" class="search-form-top">
+                                            <input class="search-field" type="text" placeholder="Search…">
+                                            <button class="search-submit">
+                                                <i class="search-btn-icon fa fa-search"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Header Top Info -->
+                                    <div
+                                        class="swiper-container header-top-info-slider-werap top-info-slider__container">
+                                        <div class="swiper-wrapper header-top-info-inner default-color">
+                                            <div class="swiper-slide">
+                                                <div class="info-item">
+                                                    <div class="info-icon">
+                                                        <span class="fab fa-whatsapp"></span>
+                                                    </div>
+                                                    <div class="info-content">
+                                                        <h6 class="info-title" data-lang="phone">+201069632570</h6>
+                                                        <div class="info-sub-title" data-lang="email">
+                                                            sales@nmscement.com</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="info-item">
+                                                    <div class="info-icon">
+                                                        <span class="fa fa-map-marker-alt"></span>
+                                                    </div>
+                                                    <div class="info-content">
+                                                        <h6 class="info-title" data-lang="address_line">3rd settlement,
+                                                            building 192 suite3
+                                                            New Cairo
+                                                        </h6>
+                                                        <div class="info-sub-title" data-lang="city"> Cairo, Egypt</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="info-item">
+                                                    <div class="info-icon">
+                                                        <span class="fa fa-clock"></span>
+                                                    </div>
+                                                    <div class="info-content">
+                                                        <h6 class="info-title" data-lang="working_hours">8:00AM - 6:00PM
+                                                        </h6>
+                                                        <div class="info-sub-title" data-lang="working_days">Monday to
+                                                            Saturday</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Header Social Networks -->
+                                    <div class="header-social-networks style-icons">
+                                        <div class="inner">
+                                            <a class=" social-link hint--black hint--bottom-left" aria-label="Twitter"
+                                                href="https://twitter.com" data-hover="Twitter" target="_blank">
+                                                <i class="social-icon fab fa-twitter"></i>
+                                            </a>
+                                            <a class=" social-link hint--black hint--bottom-left" aria-label="Facebook"
+                                                href="https://facebook.com" data-hover="Facebook" target="_blank">
+                                                <i class="social-icon fab fa-facebook-f"></i>
+                                            </a>
+                                            <a class=" social-link hint--black hint--bottom-left" aria-label="Instagram"
+                                                href="https://instagram.com" data-hover="Instagram" target="_blank">
+                                                <i class="social-icon fab fa-instagram"></i>
+                                            </a>
+                                            <a class=" social-link hint--black hint--bottom-left" aria-label="Linkedin"
+                                                href="https://linkedin.com" data-hover="Linkedin" target="_blank">
+                                                <i class="social-icon fab fa-linkedin"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- mobile menu -->
+                                <div class="mobile-navigation-icon d-block d-xl-none" id="mobile-menu-trigger">
+                                    <i></i>
+                                </div>
+                                <!-- hidden icons menu -->
+                                <div class="hidden-icons-menu d-block d-md-none" id="hidden-icon-trigger">
+                                    <a href="javascript:void(0)">
+                                        <i class="far fa-ellipsis-h-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-bottom-wrap bg-theme-default d-md-block d-none header-sticky">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="header-bottom-inner position-relative">
+                                <div class="header-bottom-left-wrap">
+                                    <!-- navigation menu -->
+                                    <div class="header__navigation d-none d-xl-block">
+                                        <nav class="navigation-menu navigation-menu--text_white">
+
+                                            <ul>
+                                                <li>
+                                                    <a href="index.html#main-wrapper"
+                                                        data-lang="home"><span>Home</span></a>
+
+                                                </li>
+                                                <li>
+                                                    <a href="index.html#about" data-lang="about"><span>About</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="index.html#features"
+                                                        data-lang="features"><span>Features</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="index.html#Products"
+                                                        data-lang="products"><span>Products</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="index.html#testimonial"
+                                                        data-lang="testimonials"><span>Testimonials</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#contact" data-lang="contact"><span>Contact Us</span></a>
+                                                </li>
+
+                                                <div class="language-selector">
+                                                    <div class="dropdown">
+                                                        <button class="dropbtn"
+                                                            id="currentLanguageButton">Language</button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#" onclick="changeLanguage('en')">English</a>
+                                                            <a href="#" onclick="changeLanguage('ar')">العربية</a>
+                                                            <a href="#" onclick="changeLanguage('fr')">Français</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <div class="header-search-form ">
+
+                                    <form action="#" class="search-form-top style-03 ">
+                                        <input class="search-field" type="text" placeholder="Search…">
+                                        <button class="search-submit">
+                                            <i class="search-btn-icon fa fa-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--====================  End of header area  ====================-->
+
+    </div>
+    <!--====================  End of header area  ====================-->
+
+
+
+
+
+
+
+
+
+
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_box text-center">
+                        <h2 class="breadcrumb-title" data-lang="about_us_title">About Us</h2>
+                        <ul class="breadcrumb-list">
+                            <li class="breadcrumb-item"><a href="index.html" data-lang="home">Home</a></li>
+                            <li class="breadcrumb-item active" data-lang="about_us">About Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- breadcrumb-area end -->
+
+
+    <div id="main-wrapper">
+
+        <!--===========  feature-large-images-wrapper  Start =============-->
+        <div class="feature-large-images-wrapper section-space--ptb_100">
+            <div class="container">
+
+
+
+                <div class="cybersecurity-about-box">
+                    <div class="row">
+                        <div class="col-lg-5 offset-lg-1">
+                            <div class="inner-img-two">
+                                <img class="img-fluid  ml-5 " src="assets/images/features/about.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 ms-auto">
+                            <div class="faq-wrapper" data-lang="faq_wrapper">
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <button class="btn-link" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    <div data-lang="about_nms">About NMS :</div>
+                                                    <span> <i class="fas fa-chevron-down"></i>
+                                                        <i class="fas fa-chevron-up"></i> </span>
+                                                </button>
+                                            </h5>
+                                        </div>
+
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                            data-bs-parent="#accordion">
+                                            <div class="card-body">
+                                                <p data-lang="about_nms_content">NMS Cement Distribution Company is a
+                                                    leading distributor in the
+                                                    cement industry, proudly representing major cement factories. As a
+                                                    distributor with
+                                                    exclusive partnerships with prominent manufacturers, we are
+                                                    dedicated to providing
+                                                    exceptional service in the distribution of cement products. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h5 class="mb-0">
+                                                <button class="btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                    <div data-lang="our_partnerships">Our Partnerships:</div>
+                                                    <span> <i class="fas fa-chevron-down"></i>
+                                                        <i class="fas fa-chevron-up"></i> </span>
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                            data-bs-parent="#accordion">
+                                            <div class="card-body">
+                                                <p data-lang="our_partnerships_content"> We hold an exclusive right for
+                                                    exporting cement products from the
+                                                    major manufacturing facilities of our partner, ensuring access to
+                                                    high-quality from reliable and certified sources. Our strategic
+                                                    alliances empower us to offer a diverse range of cement options to
+                                                    meet the unique needs of our clients. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <button class="btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                                    <div data-lang="customer_centric_approach">Customer-Centric
+                                                        Approach:</div>
+                                                    <span> <i class="fas fa-chevron-down"></i>
+                                                        <i class="fas fa-chevron-up"></i> </span>
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                            data-bs-parent="#accordion">
+                                            <div class="card-body">
+                                                <p data-lang="customer_centric_approach_content"> At NMS Cement export
+                                                    Company, we prioritize customer satisfaction.
+                                                    Our dedicated team is committed to understanding and meeting the
+                                                    specific requirements of our clients. We aim to be the go-to choose
+                                                    for reliable and top-quality cement supply services. We believe that
+                                                    a partnership between our organizations would be mutually beneficial
+                                                    and result in tremendous success. We have come to appreciate the
+                                                    value of reliable and dedicated partners and share the same
+                                                    commitment to excellence, innovative solutions, and achieving
+                                                    remarkable success.. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card">
+                                        <div class="card-header" id="headingFour">
+                                            <h5 class="mb-0">
+                                                <button class="btn-link collapsed" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                    <div data-lang="vision_for_the_future">Vision for the Future:</div>
+                                                    <span> <i class="fas fa-chevron-down"></i>
+                                                        <i class="fas fa-chevron-up"></i> </span>
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                            data-bs-parent="#accordion">
+                                            <div class="card-body">
+                                                <p data-lang="vision_for_the_future_content">NMS Cement export Company
+                                                    looks forward to forging lasting
+                                                    partnerships, delivering excellence in export cement, and
+                                                    contributing to the success and develop the construction endeavors
+                                                    across the region. We are not just seeking a short-term
+                                                    collaboration but envisioning a fruitful and enduring partnership,
+                                                    committed to investing the time, effort, and resources necessary to
+                                                    nurture our relationship over the long term. We believe that our
+                                                    collaboration will lead to mutual growth and expansion
+                                                    opportunities. Together, we develop. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--===========  feature-large-images-wrapper  End =============-->
+
+
+
+
+        <!--====================  footer area ====================-->
+        <div class="footer-area-wrapper bg-gray">
+
+            <div class="footer-area section-space--ptb_80">
+                <div class="container">
+                    <div class="row footer-widget-wrapper">
+                        <div class="col-lg-4 col-md-6 col-sm-6 footer-widget">
+                            <div class="footer-widget__logo mb-10">
+                                <img src="assets/images/logo/Arish_cement_Co._Logo_croped.png" width="70" height="48"
+                                    class="img-fluid" alt="">
+                            </div>
+                            <ul class="footer-widget__list">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-map-marker-alt location-icon"></i>
+                                        <span style="white-space: pre-line;" data-lang="footer_address">3rd settlement,
+                                            building 192 suite3, <br>
+                                            New Cairo -Cairo, Egypt</span>
+
+                                    </li>
+
+                                </ul>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
+                            <h6 class="footer-widget__title mb-20" data-lang="contact_title">Contact Us</h6>
+                            <ul class="footer-widget__list">
+                                <li>
+                                    <i class="fas fa-envelope contact-icon location-icon"></i>
+                                    <a href="mailto:sales@nmscement.com" class="hover-style-link"
+                                        data-lang="footer_email">sales@nmscement.com</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone contact-icon location-icon"></i>
+                                    <a href="tel:+2021808809" class="hover-style-link text-black "
+                                        data-lang="footer_phone">+201069632570
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
+                            <h6 class="footer-widget__title mb-20" data-lang="quick_links_title">Quick Links</h6>
+                            <ul class="footer-widget__list">
+                                <li><a href="about-us.html" class="hover-style-link"
+                                        data-lang="quick_links_about">about</a></li>
+                                <li><a href="index.html#features" class="hover-style-link"
+                                        data-lang="quick_links_features">Features</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
+                            <h6 class="footer-widget__title mb-20" data-lang="our_location_title">Our Location</h6>
+
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55277.179955197666!2d31.410892065429245!3d30.013216907947612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458229ee11726c3%3A0xfc153fdc67a8f109!2s192%2C%20New%20Cairo%201%2C%20Cairo%20Governorate%204735332!5e0!3m2!1sen!2seg!4v1708220231843!5m2!1sen!2seg"
+                                style="border:0; width: 90%;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright-area section-space--pb_30">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-6 text-center ">
+                            <span class="copyright-text" data-lang="copyright_text">All rights reserved <a
+                                    href="https://hasthemes.com/">&copy;NMS 2024</a>.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--====================  End of footer area  ====================-->
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <!--====================  scroll top ====================-->
+    <a href="#" class="scroll-top" id="scroll-top">
+        <i class="arrow-top fas fa-chevron-up"></i>
+        <i class="arrow-bottom fas fa-chevron-up"></i>
+    </a>
+    <!--====================  End of scroll top  ====================-->
+
+    <!--====================  mobile menu overlay ====================-->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu-overlay__inner">
+            <div class="mobile-menu-overlay__header">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-8">
+                            <!-- logo -->
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img width="70" src="assets/images/logo/Arish_cement_Co._Logo_croped.png"
+                                        class="img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-4">
+                            <!-- mobile menu content -->
+                            <div class="mobile-menu-content text-end">
+                                <span class="mobile-navigation-close-icon" id="mobile-menu-close-trigger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-overlay__body">
+                <nav class="offcanvas-navigation">
+
+                    <ul>
+                        <li>
+                            <a href="index.html#main-wrapper" data-lang="home"><span>Home</span></a>
+
+                        </li>
+                        <li>
+                            <a href="index.html#about" data-lang="about"><span>About</span></a>
+                        </li>
+                        <li>
+                            <a href="index.html#features" data-lang="features"><span>Features</span></a>
+                        </li>
+                        <li>
+                            <a href="index.html#Products" data-lang="products"><span>Products</span></a>
+                        </li>
+                        <li>
+                            <a href="index.html#testimonial" data-lang="testimonials"><span>Testimonials</span></a>
+                        </li>
+                        <li>
+                            <a href="index.html#contact" data-lang="contact"><span>Contact Us</span></a>
+                        </li>
+
+                        <div class="language-selector">
+                            <div class="dropdown">
+                                <button class="dropbtn" onclick="toggleDropdown()">Language</button>
+                                <div class="dropdown-content" id="languageDropdown">
+                                    <a href="#" onclick="changeLanguage('en')">English</a>
+                                    <a href="#" onclick="changeLanguage('ar')">العربية</a>
+                                    <a href="#" onclick="changeLanguage('fr')">Français</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ul>
+
+
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of mobile menu overlay  ====================-->
+
+
+
+
+
+
+
+    <!--====================  search overlay ====================-->
+    <div class="search-overlay" id="search-overlay">
+
+        <div class="search-overlay__header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6 ms-auto col-4">
+                        <!-- search content -->
+                        <div class="search-content text-end">
+                            <span class="mobile-navigation-close-icon" id="search-close-trigger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-overlay__inner">
+            <div class="search-overlay__body">
+                <div class="search-overlay__form">
+                    <form action="#">
+                        <input type="text" placeholder="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of search overlay  ====================-->
+
+
+
+
+
+
+
+
+    <!-- JS
+    ============================================ -->
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- jQuery JS -->
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+
+    <!-- Plugins JS (Please remove the comment from below plugins.min.js for better website load performance and remove plugin js files from avobe) -->
+
+    <script src="assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
