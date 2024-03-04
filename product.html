@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx" dir="ltr">
 
@@ -8,13 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Technology IT Solutions HTML Template">
     <!-- Favicon -->
-    <link rel="icon" href="../assets/images/logo/Arish_cement_Co._Logo_croped.png">
+    <link rel="icon" href="assets/images/logo/Arish_cement_Co._Logo_croped.png">
 
     <!-- CSS
         ============================================ -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
 
     <!-- Font Family CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,19 +27,19 @@
         rel="stylesheet">
 
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="../assets/css/vendor/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome-all.min.css">
 
     <!-- Swiper slider CSS -->
-    <link rel="stylesheet" href="../assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
 
     <!-- animate-text CSS -->
-    <link rel="stylesheet" href="../assets/css/plugins/animate-text.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate-text.css">
 
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="../assets/css/plugins/animate.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
 
     <!-- Light gallery CSS -->
-    <link rel="stylesheet" href="../assets/css/plugins/lightgallery.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
 
     <!-- Vendor & Plugins CSS (Please remove the comment from below vendor.min.css & plugins.min.css for better website load performance and remove css files from avobe) -->
 
@@ -45,6 +49,8 @@
     <!-- Main Style CSS -->
     <link id="styleLink" rel="stylesheet" href="assets/css/style.css">
     <link id="styleLinkAr" rel="stylesheet" href="assets/css/styleAr.css">
+
+    <!-- Load language data from the JSON file -->
     <script src="languages.json" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -121,61 +127,25 @@
 
         }
     </script>
+    <style>
+        #details-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var urlParams = new URLSearchParams(window.location.search);
-            var id = urlParams.get('id');
-            var lang = localStorage.getItem('selectedLanguage') || 'en'; // اللغة المحفوظة في localStorage، وإلا فاللغة الافتراضية 'en'
+        #details-content ul li {
+            margin-bottom: 10px;
+        }
 
-            loadContent(id, lang);
-        });
+        #details-content ul li b {
+            font-weight: bold;
+        }
 
-        function loadContent(id, lang) {
-    fetch('languages.json')
-        .then(response => response.json())
-        .then(data => {
-            var content = "";
-            var title = document.getElementById('details-title');
-            var CEM = document.getElementById('CEM');
-            var CEMcode = document.getElementById('CEMcode');
-            var productDetails = document.getElementById('product-details');
-            var downloadLink = document.getElementById('downloadLink');
-
-            // استخدام الترجمات بناءً على اللغة المحددة
-            if (id == 52.5) {
-                title.innerHTML = data[lang]['product_details_52.5']['title'];
-                CEM.innerHTML = data[lang]['product_details_52.5']['CEM'];
-                CEMcode.innerHTML = data[lang]['product_details_52.5']['CEMcode'];
-                productDetails.innerHTML = data[lang]['product_details_52.5']['productDetails'];
-                downloadLink.setAttribute('href', data[lang]['product_details_52.5']['downloadLink']);
-            } else if (id == 42.5) {
-                title.innerHTML = data[lang]['product_details_42.5']['title'];
-                CEM.innerHTML = data[lang]['product_details_42.5']['CEM'];
-                CEMcode.innerHTML = data[lang]['product_details_42.5']['CEMcode'];
-                productDetails.innerHTML = data[lang]['product_details_42.5']['productDetails'];
-                downloadLink.setAttribute('href', data[lang]['product_details_42.5']['downloadLink']);
-            } else if (id == 32.5) {
-                title.innerHTML = data[lang]['product_details_32.5']['title'];
-                CEM.innerHTML = data[lang]['product_details_32.5']['CEM'];
-                CEMcode.innerHTML = data[lang]['product_details_32.5']['CEMcode'];
-                productDetails.innerHTML = data[lang]['product_details_32.5']['productDetails'];
-                downloadLink.setAttribute('href', data[lang]['product_details_32.5']['downloadLink']);
-            } else if (id == 22.5) {
-                title.innerHTML = data[lang]['product_details_22.5']['title'];
-                CEM.innerHTML = data[lang]['product_details_22.5']['CEM'];
-                CEMcode.innerHTML = data[lang]['product_details_22.5']['CEMcode'];
-                productDetails.innerHTML = data[lang]['product_details_22.5']['productDetails'];
-                downloadLink.setAttribute('href', data[lang]['product_details_22.5']['downloadLink']);
-            }
-        });
-}
- </script>
-
-
-
-
-
+        #details-content ul li ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+    </style>
 
 </head>
 
@@ -196,6 +166,7 @@
 
     <!--====================  header area ====================-->
     <div class="header-area">
+
 
 
         <div class="header-bottom-wrap">
@@ -534,6 +505,18 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+    
+
     <!--====================  scroll top ====================-->
     <a href="#" class="scroll-top" id="scroll-top">
         <i class="arrow-top fas fa-chevron-up"></i>
@@ -630,7 +613,7 @@
                 </div>
             </div>
         </div>
-        <div class="search-overlay__inner ">
+        <div class="search-overlay__inner">
             <div class="search-overlay__body">
                 <div class="search-overlay__form">
                     <form action="#">
@@ -652,23 +635,78 @@
     <!-- JS
     ============================================ -->
     <!-- Modernizer JS -->
-    <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!-- jQuery JS -->
-    <script src="../assets/js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="../assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
 
     <!-- Plugins JS (Please remove the comment from below plugins.min.js for better website load performance and remove plugin js files from avobe) -->
 
-    <script src="../assets/js/plugins/plugins.min.js"></script>
+    <script src="assets/js/plugins/plugins.min.js"></script>
 
     <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/footer2.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get('id');
+            var lang = localStorage.getItem('selectedLanguage') || 'en'; // اللغة المحفوظة في localStorage، وإلا فاللغة الافتراضية 'en'
+
+            loadContent(id, lang);
+        });
+
+        function loadContent(id, lang) {
+
+            var content = "";
+            var title = document.getElementById('details-title');
+            var CEM = document.getElementById('CEM');
+            var CEMcode = document.getElementById('CEMcode');
+            var productDetails = document.getElementById('product-details');
+            var downloadLink = document.getElementById('downloadLink');
+
+            // استخدام الترجمات بناءً على اللغة المحددة
+            if (id == 52.5) {
+                title.innerHTML =  '<span data-lang="product_details_52.5title"></span>' ;
+                CEM.innerHTML ='<span data-lang="product_details_52.5CEM"></span>'   ;
+                CEMcode.innerHTML = '<span data-lang="product_details_52.5CEMcode"></span>' ;
+                productDetails.innerHTML ='<span data-lang="product_details_52.5productDetails"></span>'  ;
+                downloadLink.setAttribute('href', '../pdf/Clinker 52.5.pdf');
+            } else if (id == 42.5) {
+                title.innerHTML =  '<span data-lang="product_details_42.5title"></span>' ;
+                CEM.innerHTML ='<span data-lang="product_details_42.5CEM"></span>'   ;
+                CEMcode.innerHTML = '<span data-lang="product_details_42.5CEMcode"></span>' ;
+                productDetails.innerHTML ='<span data-lang="product_details_42.5productDetails"></span>'  ;
+                downloadLink.setAttribute('href', '../pdf/Portland cement 42.5.pdf');
+            } else if (id == 32.5) {
+                title.innerHTML =  '<span data-lang="product_details_32.5title"></span>' ;
+                CEM.innerHTML ='<span data-lang="product_details_32.5CEM"></span>'   ;
+                CEMcode.innerHTML = '<span data-lang="product_details_32.5CEMcode"></span>' ;
+                productDetails.innerHTML ='<span data-lang="product_details_32.5productDetails"></span>'  ;
+                downloadLink.setAttribute('href', '../pdf/Limestone cement 32.5.pdf');
+            } else if (id == 22.5) {
+                title.innerHTML =  '<span data-lang="product_details_22.5title"></span>' ;
+                CEM.innerHTML ='<span data-lang="product_details_22.5CEM"></span>'   ;
+                CEMcode.innerHTML = '<span data-lang="product_details_22.5CEMcode"></span>' ;
+                productDetails.innerHTML ='<span data-lang="product_details_22.5productDetails"></span>'  ;
+                downloadLink.setAttribute('href', '../pdf/Clinker 22.5.pdf');
+            }
+     
+}
+ </script>
+
+
+
 
 </body>
 
 </html>
+
+
+
+
+
