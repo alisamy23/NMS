@@ -17,7 +17,7 @@ header("Access-Control-Allow-Origin: *");
         }
  
         // Set the recipient email address.
-        $recipient = "info@amh-technology.com";
+        $recipient = "sales@nmscement.com";
  
         // Set the email subject.
         $subject = "Test Email for Template Demo - Mail From $name";

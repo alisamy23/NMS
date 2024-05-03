@@ -43,87 +43,121 @@
     <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
         <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"> -->
 
-<!-- Main Style CSS -->
-<link id="styleLink" rel="stylesheet" href="assets/css/style.css">
-<link id="styleLinkAr" rel="stylesheet" href="assets/css/styleAr.css">
+    <!-- Main Style CSS -->
+    <link id="styleLink" rel="stylesheet" href="assets/css/style.css">
+    <link id="styleLinkAr" rel="stylesheet" href="assets/css/styleAr.css">
 
-<!-- Load language data from the JSON file -->
-<script src="languages.json" defer></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Set the current language on page load
-        setLanguageButtonText();
+    <!-- Load language data from the JSON file -->
+    <script src="languages.json" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the current language on page load
+            setLanguageButtonText();
 
-        // Load language data from the JSON file
-        fetch('languages.json')
-            .then(response => response.json())
-            .then(data => {
-                // Store language data globally
-                window.languageData = data;
+            // Load language data from the JSON file
+            fetch('languages.json')
+                .then(response => response.json())
+                .then(data => {
 
-                // Check language and change texts accordingly
-                checkLanguageAndChangeText();
-            });
-    });
 
-    function checkLanguageAndChangeText() {
-        // Retrieve the selected language from local storage or set a default language
-        var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
 
-        // Update text content based on the selected language
-        var elements = document.querySelectorAll('[data-lang]');
-        elements.forEach(function (element) {
-            var key = element.getAttribute('data-lang');
-            if (languageData[selectedLanguage] && languageData[selectedLanguage][key]) {
-                element.textContent = languageData[selectedLanguage][key];
-            }
+
+
+
+
+
+                    // Store language data globally
+                    window.languageData = data;
+
+                    // Check language and change texts accordingly
+                    checkLanguageAndChangeText();
+                });
         });
 
-        // Update the language button text
-        setLanguageButtonText();
-    }
+        function checkLanguageAndChangeText() {
+            // Retrieve the selected language from local storage or set a default language
+            var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
 
-    function setLanguageButtonText() {
-        var currentLanguageButton = document.getElementById('currentLanguageButton');
-        var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        switch (selectedLanguage) {
-            case 'en':
-                currentLanguageButton.textContent = 'English';
-                document.getElementById('styleLink').disabled = false; // Enable English stylesheet
-                document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
-                break;
-            case 'ar':
-                currentLanguageButton.textContent = 'العربية';
-                document.getElementById('styleLink').disabled = true; // Disable English stylesheet
-                document.getElementById('styleLinkAr').disabled = false; // Enable Arabic stylesheet
-                break;
-            case 'fr':
-                currentLanguageButton.textContent = 'Français';
-                document.getElementById('styleLink').disabled = false; // Enable English stylesheet
-                document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
-                break;
-            default:
-                currentLanguageButton.textContent = 'English';
-                document.getElementById('styleLink').disabled = false; // Enable English stylesheet
-                document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+
+            var namePlaceholder = languageData[selectedLanguage]["contact_name_placeholder"];
+            var contact_email_placeholder = languageData[selectedLanguage]["contact_email_placeholder"];
+            var contact_subject_placeholder = languageData[selectedLanguage]["contact_subject_placeholder"];
+
+            var contact_name_placeholderValidate = languageData[selectedLanguage]["contact_name_placeholderValidate"];
+            var contact_email_placeholderValidate = languageData[selectedLanguage]["contact_email_placeholderValidate"];
+            var contact_subject_placeholderValidate = languageData[selectedLanguage]["contact_subject_placeholderValidate"];
+
+
+            var nameInput = document.querySelector('input[name="con_name"]');
+            var con_email = document.querySelector('input[name="con_email"]');
+            var con_subject = document.querySelector('input[name="con_subject"]');
+
+            if (nameInput) {
+                nameInput.title = contact_name_placeholderValidate;
+                nameInput.placeholder = namePlaceholder;
+            }
+            if (con_email) {
+                con_email.title = contact_email_placeholderValidate;
+                con_email.placeholder = contact_email_placeholder;
+            }
+            if (con_subject) {
+                con_subject.title = contact_subject_placeholderValidate;
+                con_subject.placeholder = contact_subject_placeholder;
+            }
+            // Update text content based on the selected language
+            var elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(function (element) {
+                var key = element.getAttribute('data-lang');
+                if (languageData[selectedLanguage] && languageData[selectedLanguage][key]) {
+                    element.textContent = languageData[selectedLanguage][key];
+                }
+            });
+
+            // Update the language button text
+            setLanguageButtonText();
         }
 
-        // Set page direction based on the selected language
-        var htmlElement = document.documentElement;
-        htmlElement.setAttribute('lang', selectedLanguage);
-        htmlElement.setAttribute('dir', selectedLanguage === 'ar' ? 'rtl' : 'ltr');
-    }
+        function setLanguageButtonText() {
+            var currentLanguageButton = document.getElementById('currentLanguageButton');
+            var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            switch (selectedLanguage) {
+                case 'en':
+                    currentLanguageButton.textContent = 'English';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+                    break;
+                case 'ar':
+                    currentLanguageButton.textContent = 'العربية';
+                    document.getElementById('styleLink').disabled = true; // Disable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = false; // Enable Arabic stylesheet
+                    break;
+                case 'fr':
+                    currentLanguageButton.textContent = 'Français';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+                    break;
+                default:
+                    currentLanguageButton.textContent = 'English';
+                    document.getElementById('styleLink').disabled = false; // Enable English stylesheet
+                    document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
+            }
 
-    function changeLanguage(lang) {
-        // Store the selected language in local storage
-        localStorage.setItem('selectedLanguage', lang);
+            // Set page direction based on the selected language
+            var htmlElement = document.documentElement;
+            htmlElement.setAttribute('lang', selectedLanguage);
+            htmlElement.setAttribute('dir', selectedLanguage === 'ar' ? 'rtl' : 'ltr');
+        }
 
-        // Change texts based on the selected language
-        checkLanguageAndChangeText();
-        location.reload();
+        function changeLanguage(lang) {
+            // Store the selected language in local storage
+            localStorage.setItem('selectedLanguage', lang);
 
-    }
-</script>
+            // Change texts based on the selected language
+            checkLanguageAndChangeText();
+            location.reload();
+
+        }
+    </script>
 
 
 </head>
@@ -351,12 +385,15 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active slideContainer" id="slide1">
                         <div class="slide-content slide-details">
-                            <h3 style="white-space: pre-line; padding: 15px;"  data-lang="slide1_title">We Deliver Various Types<br >  Of High
+                            <h3 style="white-space: pre-line; padding: 15px;" data-lang="slide1_title">We Deliver
+                                Various Types<br> Of High
                                 Quality First Grade Certified Cement</h3>
-                            <p data-lang="slide1_text">We are an export company representing one of the highest reputation companies in cement
+                            <p data-lang="slide1_text">We are an export company representing one of the highest
+                                reputation companies in cement
                                 production market.</p>
                             <div class="hero-button mt-20">
-                                <a href="details.html?id=1" class="ht-btn ht-btn-xs" data-lang="slide_button">Read More</a>
+                                <a href="details.html?id=1" class="ht-btn ht-btn-xs" data-lang="slide_button">Read
+                                    More</a>
                             </div>
                         </div>
                         <div class="overlay"></div> <!-- إضافة عنصر للـ overlay -->
@@ -364,49 +401,59 @@
                     <div id="slide2" class="carousel-item slideContainer">
                         <div class="slide-content slide-details">
                             <h3 data-lang="slide2_title" style=" padding: 15px;">Maritime Shipping</h3>
-                            <p data-lang="slide2_text">Our company offers efficient and secured maritime transport of the shipped cement.</p>
+                            <p data-lang="slide2_text">Our company offers efficient and secured maritime transport of
+                                the shipped cement.</p>
                             <div class="hero-button mt-20">
-                                <a href="details.html?id=2" class="ht-btn ht-btn-xs" data-lang="slide_button">Read More</a>
+                                <a href="details.html?id=2" class="ht-btn ht-btn-xs" data-lang="slide_button">Read
+                                    More</a>
                             </div>
                         </div>
                         <div class="overlay"></div> <!-- إضافة عنصر للـ overlay -->
                     </div>
-                    
+
 
                     <div id="slide3" class="carousel-item slideContainer">
                         <div class="slide-content slide-details">
                             <h3 data-lang="slide3_title" style=" padding: 15px;">Providing Large Quantities</h3>
-                            <p data-lang="slide3_text">We can supply up to 100000 ton per month from various types of certified cement with
-                                different packing weights 25/50 kg, 1.5 ton bulk in jumbo bags prepared for sea shipping.</p>
+                            <p data-lang="slide3_text">We can supply up to 100000 ton per month from various types of
+                                certified cement with
+                                different packing weights 25/50 kg, 1.5 ton bulk in jumbo bags prepared for sea
+                                shipping.</p>
                             <div class="hero-button mt-20">
-                                <a href="details.html?id=3" class="ht-btn ht-btn-xs" data-lang="slide_button">Read More</a>
+                                <a href="details.html?id=3" class="ht-btn ht-btn-xs" data-lang="slide_button">Read
+                                    More</a>
                             </div>
                         </div>
                         <div class="overlay"></div> <!-- إضافة عنصر للـ overlay -->
                     </div>
-                    
+
                     <div id="slide4" class="carousel-item slideContainer">
                         <div class="slide-content slide-details">
-                            <h3 data-lang="slide4_title" style=" padding: 15px;">European<br>Specifications Conformity</h3>
-                            <p data-lang="slide4_text">Our company's products are of high quality and conform to European specifications.</p>
+                            <h3 data-lang="slide4_title" style=" padding: 15px;">European<br>Specifications Conformity
+                            </h3>
+                            <p data-lang="slide4_text">Our company's products are of high quality and conform to
+                                European specifications.</p>
                             <div class="hero-button mt-20">
-                                <a href="details.html?id=4" class="ht-btn ht-btn-xs" data-lang="slide_button">Read More</a>
+                                <a href="details.html?id=4" class="ht-btn ht-btn-xs" data-lang="slide_button">Read
+                                    More</a>
                             </div>
                         </div>
                         <div class="overlay"></div> <!-- إضافة عنصر للـ overlay -->
                     </div>
-                    
+
                     <div id="slide5" class="carousel-item slideContainer">
                         <div class="slide-content slide-details">
                             <h3 data-lang="slide5_title" style=" padding: 15px;">Diverse Weight Options</h3>
-                            <p data-lang="slide5_text">Explore the convenience of our diverse packaging options, offering sacks in a range of weights to suit your specific needs.</p>
+                            <p data-lang="slide5_text">Explore the convenience of our diverse packaging options,
+                                offering sacks in a range of weights to suit your specific needs.</p>
                             <div class="hero-button mt-20">
-                                <a href="details.html?id=5" class="ht-btn ht-btn-xs" data-lang="slide_button">Read More</a>
+                                <a href="details.html?id=5" class="ht-btn ht-btn-xs" data-lang="slide_button">Read
+                                    More</a>
                             </div>
                         </div>
                         <div class="overlay"></div> <!-- إضافة عنصر للـ overlay -->
                     </div>
-                    
+
                 </div>
                 <button class="carousel-control-prev" style="z-index: 222222;" type="button"
                     data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
@@ -427,15 +474,17 @@
                             <!-- section-title-wrap Start -->
                             <div class="section-title-wrap text-center section-space--mb_60">
                                 <h6 class="section-sub-title mb-20" data-lang="about_section_title">Our company</h6>
-                                <h3 class="heading" >
-                                    <span data-lang="about_heading">Supply Capacity</span><br> 
-                                    <span class="text-color-primary" data-lang="about_heading_span">Up to 100,000 tons</span>
+                                <h3 class="heading">
+                                    <span data-lang="about_heading">Supply Capacity</span><br>
+                                    <span class="text-color-primary" data-lang="about_heading_span">Up to 100,000
+                                        tons</span>
 
-                                </h3>                            </div>
+                                </h3>
+                            </div>
                             <!-- section-title-wrap Start -->
                         </div>
                     </div>
-            
+
                     <div class="cybersecurity-about-box ">
                         <div class="row d-flex align-items-center justify-content-center">
                             <div class="col-lg-4 offset-lg-1 pb-2">
@@ -443,10 +492,19 @@
                                     <img class="img-fluid  ml-5 " src="assets/images/features/about.png" alt="">
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-5 offset-lg-1   ">
                                 <div class="cybersecurity-about-text">
-                                    <div class="text" style="font-size: 1rem;" data-lang="about_text">NMS is an nascent export company in the cement industry, proudly representing one of the highest reputation companies in cement production market, we are dedicated to providing exceptional service in the supply chain of cement products from different types of high quality first grade certified cement [CEM I 52.5N – CEM I 42.5 N – CEM II B/L 32.5 N] & clinker 52.5. in NMS construction supplies we hold customer satisfaction in our business philosophy. taking into consideration; commitment to quality, effective communication, flexibility and adaptability, long-term vision, mutual growth, we can explore new markets, develop innovative solutions, and achieve remarkable success</div>
+                                    <div class="text" style="font-size: 1rem;" data-lang="about_text">NMS is an nascent
+                                        export company in the cement industry, proudly representing one of the highest
+                                        reputation companies in cement production market, we are dedicated to providing
+                                        exceptional service in the supply chain of cement products from different types
+                                        of high quality first grade certified cement [CEM I 52.5N – CEM I 42.5 N – CEM
+                                        II B/L 32.5 N] & clinker 52.5. in NMS construction supplies we hold customer
+                                        satisfaction in our business philosophy. taking into consideration; commitment
+                                        to quality, effective communication, flexibility and adaptability, long-term
+                                        vision, mutual growth, we can explore new markets, develop innovative solutions,
+                                        and achieve remarkable success</div>
                                     <div class="button-text">
                                         <a href="about-us.html" class="btn-text">
                                             <span data-lang="discover_now">Discover now</span>
@@ -461,7 +519,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
 
 
@@ -479,7 +537,7 @@
                             <!-- section-title-wrap Start -->
                         </div>
                     </div>
-            
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="claim-grid-group">
@@ -491,7 +549,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">01</h6>
                                             <h5 class="heading" data-lang="feature_01_heading">Accreditation</h5>
-                                            <p class="text" data-lang="feature_01_text">Compliance and adherence to European standards.</p>
+                                            <p class="text" data-lang="feature_01_text">Compliance and adherence to
+                                                European standards.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -503,7 +562,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">02</h6>
                                             <h5 class="heading" data-lang="feature_02_heading">Custom</h5>
-                                            <p class="text" data-lang="feature_02_text">The possibility of printing the importer's own brand on the packaging.</p>
+                                            <p class="text" data-lang="feature_02_text">The possibility of printing the
+                                                importer's own brand on the packaging.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -515,7 +575,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">03</h6>
                                             <h5 class="heading" data-lang="feature_03_heading">Seaworthiness</h5>
-                                            <p class="text" data-lang="feature_03_text">The capability for maritime shipping preparation.</p>
+                                            <p class="text" data-lang="feature_03_text">The capability for maritime
+                                                shipping preparation.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -527,7 +588,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">04</h6>
                                             <h5 class="heading" data-lang="feature_04_heading">Supply Capacity</h5>
-                                            <p class="text" data-lang="feature_04_text">The capacity for supply up to 100,000 tons monthly.</p>
+                                            <p class="text" data-lang="feature_04_text">The capacity for supply up to
+                                                100,000 tons monthly.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -539,7 +601,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">05</h6>
                                             <h5 class="heading" data-lang="feature_05_heading">Diverse packaging</h5>
-                                            <p class="text" data-lang="feature_05_text">The ability to package in various weights and sizes.</p>
+                                            <p class="text" data-lang="feature_05_text">The ability to package in
+                                                various weights and sizes.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -551,11 +614,12 @@
                                         <div class="content">
                                             <h6 class="sub-heading">06</h6>
                                             <h5 class="heading" data-lang="feature_06_heading">P22.5 N Cement</h5>
-                                            <p class="text" data-lang="feature_06_text">The ability to produce cement with a grade of 22.5 N (low-cost for finishes).</p>
+                                            <p class="text" data-lang="feature_06_text">The ability to produce cement
+                                                with a grade of 22.5 N (low-cost for finishes).</p>
                                         </div>
                                     </div>
                                 </div>
-            
+
                                 <div class="ht-box-icon style-04">
                                     <div class="icon-box-wrap color-seven">
                                         <div class="icon">
@@ -564,7 +628,8 @@
                                         <div class="content">
                                             <h6 class="sub-heading">07</h6>
                                             <h5 class="heading" data-lang="feature_07_heading">Diversity</h5>
-                                            <p class="text" data-lang="feature_07_text">Versatile Portland Cement Production.</p>
+                                            <p class="text" data-lang="feature_07_text">Versatile Portland Cement
+                                                Production.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -573,7 +638,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--==================== Claim To Excel Area End ====================-->
 
             <!--====================  brand logo slider area ====================-->
@@ -647,24 +712,27 @@
 
 
             <!--===========  Projects wrapper Start =============-->
-            <div id="Products" class="projects-wrapper projectinfotechno-bg section-space--ptb_100" data-lang="products_section">
+            <div id="Products" class="projects-wrapper projectinfotechno-bg section-space--ptb_100"
+                data-lang="products_section">
                 <div class="container">
-            
+
                     <div class="row">
                         <div class="col-lg-12">
                             <!-- section-title-wrap Start -->
                             <div class="section-title-wrap text-center section-space--mb_40">
                                 <h6 class="section-sub-title mb-20" data-lang="products_sub_title">Our products</h6>
-                                <h3 class="heading" >
+                                <h3 class="heading">
                                     <span data-lang="products_heading">
-                                    Explore Our</span>
-                                     <span class="text-color-primary" data-lang="products_heading_span">Distinctive excel</span> 
-                                     <br> <span data-lang="products_heading_span2">Product Range</span>  </h3>
+                                        Explore Our</span>
+                                    <span class="text-color-primary" data-lang="products_heading_span">Distinctive
+                                        excel</span>
+                                    <br> <span data-lang="products_heading_span2">Product Range</span>
+                                </h3>
                             </div>
                             <!-- section-title-wrap Start -->
                         </div>
                     </div>
-            
+
                     <div class="row">
                         <div class="col-12">
                             <div class="projects-wrap swiper-container projects-slider__container">
@@ -679,10 +747,13 @@
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_52_5N_heading">52.5 N</h6>
-                                                    <div class="post-categories" data-lang="product_category">Cement</div>
-                                                    <div class="text" data-lang="product_52_5N_description">Empower Your Structures with 52.5 N Cement Strength...</div>
+                                                    <div class="post-categories" data-lang="product_category">Cement
+                                                    </div>
+                                                    <div class="text" data-lang="product_52_5N_description">Empower Your
+                                                        Structures with 52.5 N Cement Strength...</div>
                                                     <div class="box-projects-arrow">
-                                                        <span class="button-text" data-lang="view_more"> View More</span>
+                                                        <span class="button-text" data-lang="view_more"> View
+                                                            More</span>
                                                         <i class="fas fa-arrow-right ml-1"></i>
                                                     </div>
                                                 </div>
@@ -690,21 +761,25 @@
                                         </a>
                                         <!-- Projects Wrap End -->
                                     </div>
-            
+
                                     <!-- 42.5 N -->
                                     <div class="swiper-slide">
                                         <!-- Projects Wrap Start -->
                                         <a href="product.html?id=42.5" class="projects-wrap style-01 wow move-up">
                                             <div class="projects-image-box">
                                                 <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/42.5N.jpg" alt="">
+                                                    <img class="img-fluid" src="assets/images/projects/42.5N.jpg"
+                                                        alt="">
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_42_5N_heading">42.5 N</h6>
-                                                    <div class="post-categories" data-lang="product_category">Cement</div>
-                                                    <div class="text" data-lang="product_42_5N_description">Enhance Your Projects with the Strength of 42.5 N Cement...</div>
+                                                    <div class="post-categories" data-lang="product_category">Cement
+                                                    </div>
+                                                    <div class="text" data-lang="product_42_5N_description">Enhance Your
+                                                        Projects with the Strength of 42.5 N Cement...</div>
                                                     <div class="box-projects-arrow">
-                                                        <span class="button-text" data-lang="view_more"> View More</span>
+                                                        <span class="button-text" data-lang="view_more"> View
+                                                            More</span>
                                                         <i class="fas fa-arrow-right ml-1"></i>
                                                     </div>
                                                 </div>
@@ -712,21 +787,25 @@
                                         </a>
                                         <!-- Projects Wrap End -->
                                     </div>
-            
+
                                     <!--32.5 N -->
                                     <div class="swiper-slide">
                                         <!-- Projects Wrap Start -->
                                         <a href="product.html?id=32.5" class="projects-wrap style-01 wow move-up">
                                             <div class="projects-image-box">
                                                 <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/32.5n.jpg" alt="">
+                                                    <img class="img-fluid" src="assets/images/projects/32.5n.jpg"
+                                                        alt="">
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_32_5N_heading">32.5 N</h6>
-                                                    <div class="post-categories" data-lang="product_category">Cement</div>
-                                                    <div class="text" data-lang="product_32_5N_description">Optimize Your Construction with the Versatility of 32.5 N Cement...</div>
+                                                    <div class="post-categories" data-lang="product_category">Cement
+                                                    </div>
+                                                    <div class="text" data-lang="product_32_5N_description">Optimize
+                                                        Your Construction with the Versatility of 32.5 N Cement...</div>
                                                     <div class="box-projects-arrow">
-                                                        <span class="button-text" data-lang="view_more"> View More</span>
+                                                        <span class="button-text" data-lang="view_more"> View
+                                                            More</span>
                                                         <i class="fas fa-arrow-right ml-1"></i>
                                                     </div>
                                                 </div>
@@ -734,7 +813,7 @@
                                         </a>
                                         <!-- Projects Wrap End -->
                                     </div>
-            
+
                                     <!-- 22.5 N -->
                                     <!-- <div class="swiper-slide">
                                         <a href="product.html?id=22.5" class="projects-wrap style-01 wow move-up">
@@ -754,8 +833,8 @@
                                             </div>
                                         </a>
                                     </div> -->
-            
-            
+
+
                                 </div>
                                 <div class="swiper-pagination swiper-pagination-project mt_20"></div>
                             </div>
@@ -763,12 +842,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--===========  Projects wrapper End =============-->
 
 
             <!--=========== fun fact Wrapper Start ==========-->
-            <div class="fun-fact-wrapper bg-theme-default section-space--pb_30 section-space--pt_60" data-lang="fun_facts">
+            <div class="fun-fact-wrapper bg-theme-default section-space--pb_30 section-space--pt_60"
+                data-lang="fun_facts">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 wow move-up">
@@ -798,7 +878,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--=========== fun fact Wrapper End ==========-->
 
 
@@ -809,7 +889,8 @@
                         <div class="col-lg-12">
                             <div class="section-title-wrap text-center section-space--mb_40">
                                 <h6 class="section-sub-title mb-20" data-lang="testimonial_sub_title">آراء العملاء</h6>
-                                <h3 class="heading" > <span data-lang="testimonial_heading">لماذا يحب الناس </span> <span class="text-color-primary" data-lang="testimonial_heading_span">NMS؟</span></h3>
+                                <h3 class="heading"> <span data-lang="testimonial_heading">لماذا يحب الناس </span> <span
+                                        class="text-color-primary" data-lang="testimonial_heading_span">NMS؟</span></h3>
                             </div>
                             <div class="testimonial-slider">
                                 <div class="swiper-container testimonial-slider__container">
@@ -818,7 +899,8 @@
                                             <div class="testimonial-slider__one wow move-up">
                                                 <div class="testimonial-slider--info">
                                                     <div class="testimonial-slider__media">
-                                                        <img src="../assets/images/testimonial/pngwing.com.png" class="img-fluid" alt="">
+                                                        <img src="../assets/images/testimonial/pngwing.com.png"
+                                                            class="img-fluid" alt="">
                                                     </div>
                                                     <div class="testimonial-slider__author">
                                                         <div class="testimonial-rating">
@@ -829,19 +911,25 @@
                                                             <span class="fa fa-star"></span>
                                                         </div>
                                                         <div class="author-info">
-                                                            <h6 class="name" data-lang="testimonial_author_1">السيد جون دو</h6>
-                                                            <span class="designation" data-lang="testimonial_designation_1">مدير مشروع كبير</span>
+                                                            <h6 class="name" data-lang="testimonial_author_1">السيد جون
+                                                                دو</h6>
+                                                            <span class="designation"
+                                                                data-lang="testimonial_designation_1">مدير مشروع
+                                                                كبير</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="testimonial-slider__text" data-lang="testimonial_text_1">لقد فاقت NMS توقعاتي! انتباههم للتفاصيل والالتزام بالتميز حقًا ملحوظ.</div>
+                                                <div class="testimonial-slider__text" data-lang="testimonial_text_1">لقد
+                                                    فاقت NMS توقعاتي! انتباههم للتفاصيل والالتزام بالتميز حقًا ملحوظ.
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="testimonial-slider__one wow move-up">
                                                 <div class="testimonial-slider--info">
                                                     <div class="testimonial-slider__media">
-                                                        <img src="../assets/images/testimonial/pngwing.com.png" class="img-fluid" alt="">
+                                                        <img src="../assets/images/testimonial/pngwing.com.png"
+                                                            class="img-fluid" alt="">
                                                     </div>
                                                     <div class="testimonial-slider__author">
                                                         <div class="testimonial-rating">
@@ -852,19 +940,24 @@
                                                             <span class="fa fa-star"></span>
                                                         </div>
                                                         <div class="author-info">
-                                                            <h6 class="name" data-lang="testimonial_author_2">الآنسة إيميلي جونسون</h6>
-                                                            <span class="designation" data-lang="testimonial_designation_2">مدير تسويق</span>
+                                                            <h6 class="name" data-lang="testimonial_author_2">الآنسة
+                                                                إيميلي جونسون</h6>
+                                                            <span class="designation"
+                                                                data-lang="testimonial_designation_2">مدير تسويق</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="testimonial-slider__text" data-lang="testimonial_text_2">لقد أعجبت كثيرًا بالاحترافية والتفاني في العمل مع NMS. حلولهم مبتكرة وفعالة.</div>
+                                                <div class="testimonial-slider__text" data-lang="testimonial_text_2">لقد
+                                                    أعجبت كثيرًا بالاحترافية والتفاني في العمل مع NMS. حلولهم مبتكرة
+                                                    وفعالة.</div>
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="testimonial-slider__one wow move-up">
                                                 <div class="testimonial-slider--info">
                                                     <div class="testimonial-slider__media">
-                                                        <img src="../assets/images/testimonial/pngwing.com.png" class="img-fluid" alt="">
+                                                        <img src="../assets/images/testimonial/pngwing.com.png"
+                                                            class="img-fluid" alt="">
                                                     </div>
                                                     <div class="testimonial-slider__author">
                                                         <div class="testimonial-rating">
@@ -875,12 +968,17 @@
                                                             <span class="fa fa-star"></span>
                                                         </div>
                                                         <div class="author-info">
-                                                            <h6 class="name" data-lang="testimonial_author_3">السيد مايكل سميث</h6>
-                                                            <span class="designation" data-lang="testimonial_designation_3">مدير تقنية المعلومات</span>
+                                                            <h6 class="name" data-lang="testimonial_author_3">السيد
+                                                                مايكل سميث</h6>
+                                                            <span class="designation"
+                                                                data-lang="testimonial_designation_3">مدير تقنية
+                                                                المعلومات</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="testimonial-slider__text" data-lang="testimonial_text_3">كان العمل مع NMS مفتاح النجاح لشركتنا. كفاءتهم ودعمهم كانا لا غنى عنه.</div>
+                                                <div class="testimonial-slider__text" data-lang="testimonial_text_3">كان
+                                                    العمل مع NMS مفتاح النجاح لشركتنا. كفاءتهم ودعمهم كانا لا غنى عنه.
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- يمكنك إضافة المزيد من السلايدات هنا -->
@@ -892,20 +990,24 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--====================  End of testimonial section  ====================-->
 
 
 
 
             <!--====================  Conact us Section Start ====================-->
-            <div id="contact" class="contact-us-section-wrappaer section-space--pt_100 section-space--pb_70" >
+            <div id="contact" class="contact-us-section-wrappaer section-space--pt_100 section-space--pb_70">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-lg-6">
                             <div class="conact-us-wrap-one mb-30">
-                                <h3 class="heading" data-lang="contact_heading">To make requests for <br>further information, <br><span class="text-color-primary">contact us</span> via our social channels.</h3>
-                                <div class="sub-heading" data-lang="contact_subheading">We just need a couple of hours! <br> No more than 2 working days since receiving your issue ticket.</div>
+                                <h3 class="heading" data-lang="contact_heading">To make requests for <br>further
+                                    information, <br><span class="text-color-primary">contact us</span> via our social
+                                    channels.</h3>
+                                <div class="sub-heading" data-lang="contact_subheading">We just need a couple of hours!
+                                    <br> No more than 2 working days since receiving your issue ticket.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-lg-6">
@@ -914,20 +1016,25 @@
                                     <div class="contact-form">
                                         <div class="contact-input">
                                             <div class="contact-inner">
-                                                <input name="con_name" type="text" placeholder="Name *" required data-lang="contact_name_placeholder">
+                                                <input name="con_name" type="text" placeholder="Name *" required
+                                                    title="enter Name" data-lang="contact_name_placeholder">
                                             </div>
                                             <div class="contact-inner">
-                                                <input name="con_email" type="email" placeholder="Email *" required data-lang="contact_email_placeholder">
+                                                <input name="con_email" type="email" placeholder="Email *" required
+                                                    data-lang="contact_email_placeholder">
                                             </div>
                                         </div>
                                         <div class="contact-inner">
-                                            <input name="con_subject" type="text" placeholder="Subject *" required data-lang="contact_subject_placeholder">
+                                            <input name="con_subject" type="text" placeholder="Subject *" required
+                                                data-lang="contact_subject_placeholder">
                                         </div>
                                         <div class="contact-inner contact-message">
-                                            <textarea name="con_message" placeholder="Please describe what you need." required data-lang="contact_message_placeholder"></textarea>
+                                            <textarea name="con_message" placeholder="Please describe what you need."
+                                                required data-lang="contact_message_placeholder"></textarea>
                                         </div>
                                         <div class="submit-btn mt-20">
-                                            <button class="ht-btn ht-btn-md" type="submit" data-lang="contact_submit_btn">Send message</button>
+                                            <button class="ht-btn ht-btn-md" type="submit"
+                                                data-lang="contact_submit_btn">Send message</button>
                                             <p class="form-messege"></p>
                                         </div>
                                     </div>
@@ -937,19 +1044,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--====================  Conact us Section End  ====================-->
 
 
-            <div id="main-wrapper" >
+            <div id="main-wrapper">
                 <div class="site-wrapper-reveal">
                     <div class="cta-image-area_one section-space--ptb_80 cta-bg-image_one">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-xl-8 col-lg-7">
                                     <div class="cta-content md-text-center">
-                                        <h3 class="heading text-white" ><span data-lang="cta_heading"> We produce</span> <span
-                                                class="text-color-secondary" data-lang="cta_span_1">Clinker</span> and
+                                        <h3 class="heading text-white"><span data-lang="cta_heading"> We produce</span>
+                                            <span class="text-color-secondary" data-lang="cta_span_1">Clinker</span> and
                                             <span class="text-color-secondary" data-lang="cta_span_2"> Ordinary Portland
                                                 cement(OPC)</span>
                                         </h3>
@@ -957,8 +1064,9 @@
                                 </div>
                                 <div class="col-xl-4 col-lg-5">
                                     <div class="cta-button-group--one text-center">
-                                        <a href="mailto:sales@nmscement.com" class="btn btn--white btn-one" data-lang="cta_button"><span
-                                                class="btn-icon me-2"><i class="far fa-comment-alt"></i></span> Let's
+                                        <a href="mailto:sales@nmscement.com" class="btn btn--white btn-one"
+                                            data-lang="cta_button"><span class="btn-icon me-2"><i
+                                                    class="far fa-comment-alt"></i></span> Let's
                                             talk</a>
                                     </div>
                                 </div>
@@ -967,25 +1075,26 @@
                     </div>
                 </div>
                 <!--==================== Footer Area ====================-->
-                <div class="footer-area-wrapper bg-gray" >
+                <div class="footer-area-wrapper bg-gray">
 
                     <div class="footer-area section-space--ptb_80">
                         <div class="container">
                             <div class="row footer-widget-wrapper">
                                 <div class="col-lg-4 col-md-6 col-sm-6 footer-widget">
                                     <div class="footer-widget__logo mb-10">
-                                        <img src="assets/images/logo/Arish_cement_Co._Logo_croped.png" width="70" height="48"
-                                            class="img-fluid" alt="">
+                                        <img src="assets/images/logo/Arish_cement_Co._Logo_croped.png" width="70"
+                                            height="48" class="img-fluid" alt="">
                                     </div>
                                     <ul class="footer-widget__list">
                                         <ul>
                                             <li>
                                                 <i class="fas fa-map-marker-alt location-icon"></i>
-                                                <span style="white-space: pre-line;"  data-lang="footer_address">3rd settlement, building 192 suite3, <br>
+                                                <span style="white-space: pre-line;" data-lang="footer_address">3rd
+                                                    settlement, building 192 suite3, <br>
                                                     New Cairo -Cairo, Egypt</span>
-                
+
                                             </li>
-                
+
                                         </ul>
                                     </ul>
                                 </div>
@@ -999,23 +1108,29 @@
                                         </li>
                                         <li>
                                             <i class="fas fa-phone contact-icon location-icon"></i>
-                                            <a href="tel:+2021808809" class="hover-style-link text-black " data-lang="footer_phone">+201069632570
+                                            <a href="tel:+2021808809" class="hover-style-link text-black "
+                                                data-lang="footer_phone">+201069632570
                                             </a>
                                         </li>
-                
+
                                     </ul>
                                 </div>
                                 <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
-                                    <h6 class="footer-widget__title mb-20" data-lang="quick_links_title">Quick Links</h6>
+                                    <h6 class="footer-widget__title mb-20" data-lang="quick_links_title">Quick Links
+                                    </h6>
                                     <ul class="footer-widget__list">
-                                        <li><a href="about-us.html" class="hover-style-link" data-lang="quick_links_about">about</a></li>
-                                        <li><a href="#features" class="hover-style-link" data-lang="quick_links_features">Features</a></li>
+                                        <li><a href="about-us.html" class="hover-style-link"
+                                                data-lang="quick_links_about">about</a></li>
+                                        <li><a href="#features" class="hover-style-link"
+                                                data-lang="quick_links_features">Features</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
-                                    <h6 class="footer-widget__title mb-20" data-lang="our_location_title">Our Location</h6>
-                
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55277.179955197666!2d31.410892065429245!3d30.013216907947612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458229ee11726c3%3A0xfc153fdc67a8f109!2s192%2C%20New%20Cairo%201%2C%20Cairo%20Governorate%204735332!5e0!3m2!1sen!2seg!4v1708220231843!5m2!1sen!2seg"
+                                    <h6 class="footer-widget__title mb-20" data-lang="our_location_title">Our Location
+                                    </h6>
+
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55277.179955197666!2d31.410892065429245!3d30.013216907947612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458229ee11726c3%3A0xfc153fdc67a8f109!2s192%2C%20New%20Cairo%201%2C%20Cairo%20Governorate%204735332!5e0!3m2!1sen!2seg!4v1708220231843!5m2!1sen!2seg"
                                         style="border:0; width: 90%;" allowfullscreen="" loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
@@ -1032,11 +1147,11 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
-                
+
             </div>
-            
+
         </div>
     </div>
     <!--====================  scroll top ====================-->
@@ -1089,16 +1204,14 @@
                             <a href="#Products" data-lang="products"><span>Products</span></a>
                         </li>
                         <li>
-                            <a href="#testimonial"
-                                data-lang="testimonials"><span>Testimonials</span></a>
+                            <a href="#testimonial" data-lang="testimonials"><span>Testimonials</span></a>
                         </li>
                         <li>
                             <a href="#contact" data-lang="contact"><span>Contact Us</span></a>
                         </li>
                         <div class="language-selector">
                             <div class="dropdown">
-                                <button class="dropbtn"
-                                    id="currentLanguageButton">Language</button>
+                                <button class="dropbtn" id="currentLanguageButton">Language</button>
                                 <div class="dropdown-content">
                                     <a href="#" onclick="changeLanguage('en')">English</a>
                                     <a href="#" onclick="changeLanguage('ar')">العربية</a>
@@ -1109,7 +1222,7 @@
 
 
 
-                        
+
 
                     </ul>
 
@@ -1219,26 +1332,34 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-<script>
-    function toggleDropdown() {
-    var dropdown = document.getElementById("languageDropdown");
-    dropdown.classList.toggle("show");
-}
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("languageDropdown");
+            dropdown.classList.toggle("show");
+        }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
             }
         }
-    }
-}
-</script>
+
+
+
+
+
+
+
+
+    </script>
 
 </body>
 

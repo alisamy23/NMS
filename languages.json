@@ -80,8 +80,8 @@
         "testimonial_designation_3": "IT Director",
         "testimonial_text_3": "Working with NMS was the key to our company's success. Their efficiency and support were invaluable.",
         "contact_heading": "To make requests for further information, contact us via our social channels.",
-        "contact_subheading": "We will respond as quickly as possible after studying the demands to provide you with suitable supply terms and final prices."
-       , "contact_name_placeholder": "Name *",
+        "contact_subheading": "We will respond as quickly as possible after studying the demands to provide you with suitable supply terms and final prices.",
+        "contact_name_placeholder": "Name *",
         "contact_email_placeholder": "Email *",
         "contact_subject_placeholder": "Subject *",
         "contact_message_placeholder": "Please describe what you need.",
@@ -153,7 +153,10 @@
         "product_packaging": "Product Packaging and",
         "branding": "Branding:",
         "packing_weights": "We offer various packaging weights of 25/50 kg, 1.5 tons in wholesale jumbo bags according to the standard for maritime shipping.",
-        "company_brand": "We can pack the product with your company's brand (logo) printed on 25/50 kg bags."
+        "company_brand": "We can pack the product with your company's brand (logo) printed on 25/50 kg bags.",
+        "contact_name_placeholderValidate": "Please enter your name",
+        "contact_email_placeholderValidate": "Please enter a valid email address",
+        "contact_subject_placeholderValidate": "Please enter the subject"
     },
     "ar": {
         "home": "الرئيسية",
@@ -309,7 +312,10 @@
         "product_details_22.5CEM": "CEM I",
         "product_details_22.5CEMcode": "22.5 N",
         "product_details_22.5productDetails": "فك التنوع في مساعي البناء الخاصة بك مع الأمان والقابلية للتكيف من الأسمنت CEM I 22.5 N، مما يضمن الأداء الأمثل والجودة المستديمة لمجموعة واسعة من التطبيقات.",
-        "product_details_22.5downloadLink": "../pdf/Clinker 52.5.pdf"
+        "product_details_22.5downloadLink": "../pdf/Clinker 52.5.pdf",
+        "contact_name_placeholderValidate": "يرجى إدخال اسمك",
+        "contact_email_placeholderValidate": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+        "contact_subject_placeholderValidate": "يرجى إدخال الموضوع"
     },
     "fr": {
         "home": "Accueil",
@@ -466,6 +472,9 @@
         "product_packaging": "Emballage du Produit et",
         "branding": "Marque :",
         "packing_weights": "Nous proposons différents poids d'emballage de 25/50 kg, 1,5 tonne en sacs jumbo en gros selon la norme pour l'expédition maritime.",
-        "company_brand": "Nous pouvons emballer le produit avec la marque de votre entreprise (logo) imprimée sur des sacs de 25/50 kg."
+        "company_brand": "Nous pouvons emballer le produit avec la marque de votre entreprise (logo) imprimée sur des sacs de 25/50 kg.",
+        "contact_name_placeholderValidate": "Veuillez entrer votre nom",
+        "contact_email_placeholderValidate": "Veuillez entrer une adresse e-mail valide",
+        "contact_subject_placeholderValidate": "Veuillez entrer le sujet"
     }
 }
