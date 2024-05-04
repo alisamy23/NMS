@@ -25,17 +25,24 @@ header("Access-Control-Allow-Origin: *");
         }
  
         // Set the recipient email address.
-        $recipient = "sales@nmscement.com";
- 
+        // $recipient = "sales@nmscement.com";
+         $recipient = "alisamynada@gmail.com";
+
         // Set the email subject.
         //$subject = "Test Email for Template Demo - Mail From $name";
  
         // Build the email content.
-        $email_content = "Name: $name\n";
-        $email_content .= "Email: $email\n";
-        $email_content .= "Subject:\n$subject\n";
-        $email_content .= "Message:\n$message\n";
- 
+// Build the email content with HTML formatting.
+$email_content = "<h2>Name:</h2><p>$name</p>";
+$email_content .= "<h2>Email:</h2><p>$email</p>";
+$email_content .= "<h2>Subject:</h2><p>$subject</p>";
+$email_content .= "<h2>Message:</h2><p>$message</p>";
+
+// Set the message body.
+
+
+
+
         // Build the email headers.
         $email_headers = "From: $name <$email>";
  
@@ -47,14 +54,16 @@ header("Access-Control-Allow-Origin: *");
         $mail->Port = 587;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = 'alisamynada@gmail.com';
+        $mail->Username = 'alisamynada';
         $mail->Password = 'maknyjxvslrenosr';
-        $mail->setFrom($email, $subject);
-        $mail->addAddress($recipient, $recipient);
+        $mail->setFrom(  $email_headers, $email_headers);
+        $mail->addAddress($recipient,  "NMS");
         $mail->Subject = $subject;
         $mail->msgHTML($message);
         $mail->AltBody = 'HTML messaging not supported';
-    
+        $mail->isHTML(true);
+
+        $mail->Body = $email_content;
         // if($mail->send()){
         //     echo 'done';
         // }else{
