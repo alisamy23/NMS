@@ -119,25 +119,35 @@
 
         function setLanguageButtonText() {
             var currentLanguageButton = document.getElementById('currentLanguageButton');
+            var currentLanguageButton2 = document.getElementById('currentLanguageButton2');
+
             var selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
             switch (selectedLanguage) {
                 case 'en':
                     currentLanguageButton.textContent = 'English';
+                    currentLanguageButton2.textContent = 'English';
+
                     document.getElementById('styleLink').disabled = false; // Enable English stylesheet
                     document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
                     break;
                 case 'ar':
                     currentLanguageButton.textContent = 'العربية';
+                    currentLanguageButton2.textContent = 'العربية';
+
                     document.getElementById('styleLink').disabled = true; // Disable English stylesheet
                     document.getElementById('styleLinkAr').disabled = false; // Enable Arabic stylesheet
                     break;
                 case 'fr':
                     currentLanguageButton.textContent = 'Français';
+                    currentLanguageButton2.textContent = 'Français';
+
                     document.getElementById('styleLink').disabled = false; // Enable English stylesheet
                     document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
                     break;
                 default:
                     currentLanguageButton.textContent = 'English';
+                    currentLanguageButton2.textContent = 'English';
+
                     document.getElementById('styleLink').disabled = false; // Enable English stylesheet
                     document.getElementById('styleLinkAr').disabled = true; // Disable Arabic stylesheet
             }
@@ -200,7 +210,7 @@
                     <div class="col-lg-12">
                         <div class="header position-relative">
                             <!-- brand logo -->
-                            <div class="header__logo top-logo">
+                            <div class="header__logo ">
                                 <a href="#">
                                     <img src="assets/images/logo/Arish_cement_Co._Logo_croped.png" aria-label="NMS Logo"
                                         width="70" height="48" class="img-fluid" alt="">
@@ -315,9 +325,13 @@
                                 <div class="header-bottom-left-wrap">
                                     <!-- navigation menu -->
                                     <div class="header__navigation d-none d-xl-block">
-                                        <nav class="navigation-menu navigation-menu--text_white">
 
+                                        <nav class="navigation-menu navigation-menu--text_white">
+                                            
+                                              
+                                           
                                             <ul>
+                                                <img style="    width: 50px;" src="assets/images/logo/Arish.png" aria-label="NMS Logo" alt="">
                                                 <li>
                                                     <a href="#main-wrapper" data-lang="home"><span>Home</span></a>
 
@@ -495,7 +509,7 @@
 
                             <div class="col-lg-5 offset-lg-1   ">
                                 <div class="cybersecurity-about-text">
-                                    <div class="text" style="font-size: 1rem;" data-lang="about_text">NMS is an nascent
+                                    <div class="text" style="font-size: 1rem;" data-lang="about_text">NMS is a nascent
                                         export company in the cement industry, proudly representing one of the highest
                                         reputation companies in cement production market, we are dedicated to providing
                                         exceptional service in the supply chain of cement products from different types
@@ -732,7 +746,9 @@
                             <!-- section-title-wrap Start -->
                         </div>
                     </div>
-
+                    <div class="projects-image" style="    display: flex;   justify-content: center;">
+                        <img class="img-fluid" src="assets/images/projects/cement (3).png" alt="32.5n">
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="projects-wrap swiper-container projects-slider__container">
@@ -742,9 +758,9 @@
                                         <!-- Projects Wrap Start -->
                                         <a href="product.html?id=52.5" class="projects-wrap style-01 wow move-up">
                                             <div class="projects-image-box">
-                                                <div class="projects-image">
+                                                <!-- <div class="projects-image">
                                                     <img class="img-fluid" src="assets/images/projects/52.5.jpg" alt="">
-                                                </div>
+                                                </div> -->
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_52_5N_heading">52.5 N</h6>
                                                     <div class="post-categories" data-lang="product_category">Cement
@@ -767,10 +783,10 @@
                                         <!-- Projects Wrap Start -->
                                         <a href="product.html?id=42.5" class="projects-wrap style-01 wow move-up">
                                             <div class="projects-image-box">
-                                                <div class="projects-image">
+                                                <!-- <div class="projects-image">
                                                     <img class="img-fluid" src="assets/images/projects/42.5N.jpg"
                                                         alt="">
-                                                </div>
+                                                </div> -->
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_42_5N_heading">42.5 N</h6>
                                                     <div class="post-categories" data-lang="product_category">Cement
@@ -793,10 +809,10 @@
                                         <!-- Projects Wrap Start -->
                                         <a href="product.html?id=32.5" class="projects-wrap style-01 wow move-up">
                                             <div class="projects-image-box">
-                                                <div class="projects-image">
+                                                <!-- <div class="projects-image">
                                                     <img class="img-fluid" src="assets/images/projects/32.5n.jpg"
                                                         alt="">
-                                                </div>
+                                                </div> -->
                                                 <div class="content">
                                                     <h6 class="heading" data-lang="product_32_5N_heading">32.5 N</h6>
                                                     <div class="post-categories" data-lang="product_category">Cement
@@ -1211,7 +1227,7 @@
                         </li>
                         <div class="language-selector">
                             <div class="dropdown">
-                                <button class="dropbtn" id="currentLanguageButton">Language</button>
+                                <button class="dropbtn" id="currentLanguageButton2">Language</button>
                                 <div class="dropdown-content">
                                     <a href="#" onclick="changeLanguage('en')">English</a>
                                     <a href="#" onclick="changeLanguage('ar')">العربية</a>
