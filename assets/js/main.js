@@ -15,6 +15,7 @@
 	var sticky = $('.header-sticky');
 	var $html = $('html');
 	var $body = $('body');
+    var logoImage = $('#ImageLogtsticky');
 
 	windows.on('scroll', function () {
 		var scroll = windows.scrollTop();
@@ -23,8 +24,12 @@
 		if (screenSize >= 320) {
 			if (scroll < headerHeight) {
 				sticky.removeClass('is-sticky');
+                logoImage.hide();
+
 			} else {
 				sticky.addClass('is-sticky');
+                logoImage.show();
+
             }
 		}
 
